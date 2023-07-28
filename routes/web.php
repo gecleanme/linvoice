@@ -46,11 +46,9 @@ require __DIR__.'/auth.php';
  -Notes Section
  -Invoice Status
  -Landing page
- -Test max items limit
- -contact info sec.
+ -contact info sec. issuer reciever phone, and issuer email
  - protect download route with session key
- - add clear button
  - project cleanup
- - form instructions
-
+ - paper size / font family
+ - add svg logo support
  * */

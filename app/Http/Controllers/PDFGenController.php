@@ -30,7 +30,11 @@ class PDFGenController extends Controller
             'paymentMethod' => $request->paymentMethod,
             'itemsNum' => $request->itemsNum,
             'items' => $request->items,
-            'invoiceTotal' => $request->invoiceTotal
+            'invoiceTotal' => $request->invoiceTotal,
+            'issuerPhone' => $request->issuerPhone,
+            'issuerEmail' => $request->issuerEmail,
+
+
 
 
 
@@ -59,8 +63,11 @@ class PDFGenController extends Controller
             'itemsNum' => session('itemsNum'),
             'items' => session('items'),
             'invoiceTotal' => session('invoiceTotal'),
+            'issuerPhone' => session('issuerPhone'),
+            'issuerEmail' => session('issuerEmail'),
 
-        ]);
+
+           ]);
 
     }
 
@@ -85,6 +92,9 @@ class PDFGenController extends Controller
             'itemsNum' => session('itemsNum'),
             'items' => session('items'),
             'invoiceTotal' => session('invoiceTotal'),
+            'issuerPhone' => session('issuerPhone'),
+            'issuerEmail' => session('issuerEmail'),
+
 
         ])->render();
         $pdf = PDF::loadHTML($html)->setPaper('a4');

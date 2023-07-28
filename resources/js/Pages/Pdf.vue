@@ -11,10 +11,12 @@ const props = defineProps({
     address: String,
     billedToEst: String,
     billedToName: String,
+    issuerPhone:String,
+    issuerEmail:String,
     billedToEmail: String,
     paymentMethod: String,
     items: Array,
-    currency: Number,
+    currency: String,
     invoiceTotal: Number
 
 
@@ -68,7 +70,9 @@ const showSuccess = ref(false);
                         <tr>
                             <td>
                                 {{ companyName }}<br/>
-                                {{ address }}
+                                {{ address }} <br/> <br/>
+                                Contact <br> {{issuerEmail}} <br/>
+                                             {{issuerPhone}}
                             </td>
 
                             <td>

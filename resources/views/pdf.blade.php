@@ -123,7 +123,7 @@
                 <table>
                     <tr>
                         <td class="title">
-                            <img src="{{$logoURL}}" alt="Company logo" style="width: 100%; max-width: 300px"/>
+                            <img src="{{$logoURL}}" alt="" style="width: 100%; max-width: 300px"/>
                         </td>
 
                         <td>
@@ -142,7 +142,9 @@
                     <tr>
                         <td>
                             {{$companyName}}<br/>
-                            {{$address}}
+                            {{$address}}  <br/> <br/>
+                            Contact <br> {{$issuerEmail}} <br/>
+                                         {{$issuerPhone}}
                         </td>
 
                         <td>
