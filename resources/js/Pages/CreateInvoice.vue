@@ -46,7 +46,7 @@ let formatter = new Intl.NumberFormat('en-US', {
 
 
 watch(() => formData.itemsNum, (newVal, oldVal) => {
-    newVal = Math.max(0, newVal); // not less than 0
+    newVal = Math.max(1, newVal); // not less than 1
 
     if (newVal > oldVal) {
         // If num increased, add new items
