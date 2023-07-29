@@ -15,6 +15,7 @@ const props = defineProps({
     issuerEmail:String,
     billedToEmail: String,
     paymentMethod: String,
+    Status:String,
     items: Array,
     currency: String,
     invoiceTotal: Number
@@ -57,7 +58,8 @@ const showSuccess = ref(false);
                             <td>
                                 Invoice #: {{ invoiceNum }}<br/>
                                 Created: {{ issueDate }}<br/>
-                                Due: {{ dueDate }}
+                                Due: {{ dueDate }} <br/>
+                                Status: {{ Status }}
                             </td>
                         </tr>
                     </table>

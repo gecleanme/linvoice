@@ -129,7 +129,8 @@
                         <td>
                             Invoice #: {{$invoiceNum}}<br/>
                             Created: {{$issueDate}}<br/>
-                            Due: {{$dueDate}}
+                            Due: {{ $dueDate }}<br/>
+                            Status: {{$Status}}
                         </td>
                     </tr>
                 </table>
@@ -141,10 +142,11 @@
                 <table>
                     <tr>
                         <td>
-                            {{$companyName}}<br/>
-                            {{$address}}  <br/> <br/>
-                            Contact <br> {{$issuerEmail}} <br/>
-                                         {{$issuerPhone}}
+                            {{$companyName}} <br/>
+                            {{$address}} <br/> <br/>
+                            Contact <br>
+                            {{$issuerEmail}}<br/>
+                            {{$issuerPhone}}
                         </td>
 
                         <td>

@@ -26,11 +26,13 @@ const formData = useForm({
     billedToEst:null,
     billedToName:null,
     billedToEmail:null,
+    Status:"Sent",
     currency: "",
     itemsNum:1,
     items: Array.from({ length: 1 }, () => ({ description: '', price: '' })),
     invoiceTotal:0,
     paymentMethod:"Credit Card",
+    paperSize:'a4',
 
 });
 
@@ -59,7 +61,7 @@ watch(() => formData.itemsNum, (newVal, oldVal) => {
 
 
 const total = computed(() => formData.items.reduce((sum, item) => {
-    const price = Number(item.price.replace(/,/g, '')); // Remove commas to keep total a number
+    const price = Number(item.price.replace(/,/g, '')); // Remove commas to keep total a true number
     return sum + price;
 }, 0).toFixed(3));
 
@@ -122,7 +124,7 @@ const sendData = () => {
                                         >
                                         <span class="text-sm text-red-500">* </span>
                                         <p class="text-sm text-gray-600 mt-2">Must be publicly accessible</p>
-                                        <p class="text-sm text-gray-600 mt-2">PNG or JPG</p>
+                                        <p class="text-sm text-gray-600 mt-2">PNG, JPG or SVG extension</p>
 
 
                                         <input
@@ -264,6 +266,62 @@ const sendData = () => {
                                     </div>
 
 
+                                    <!--                Invoice Status                    -->
+
+                                    <div class="md:col-span-5">
+                                        <label
+                                            for="Status"
+                                            class="font-semibold"
+                                        >Invoice Status</label
+                                        >
+                                        <span class="text-sm text-red-500">* </span>
+
+
+                                        <label class="label cursor-pointer">
+                                            <span class="label-text">Sent</span>
+                                            <input
+                                                type="radio"
+                                                v-model="formData.Status"
+                                                class="bg-gray-100 checked:bg-black"
+                                                value="Sent"
+                                                checked
+                                            />
+                                        </label>
+
+
+                                        <label class="label cursor-pointer">
+                                            <span class="label-text">Paid</span>
+                                            <input
+                                                type="radio"
+                                                v-model="formData.Status"
+                                                class="bg-gray-100 checked:bg-black"
+                                                value="Paid"
+                                            />
+                                        </label>
+
+
+                                        <label class="label cursor-pointer">
+                                            <span class="label-text">Overdue</span>
+                                            <input
+                                                type="radio"
+                                                v-model="formData.Status"
+                                                class="bg-gray-100 checked:bg-black"
+                                                value="Overdue"
+                                            />
+                                        </label>
+
+
+
+                                        <p
+                                            v-if="formData.errors.Status"
+                                            class="text-sm text-red-500 font-semibold"
+                                        >
+                                            {{ formData.errors.Status }}
+                                        </p>
+                                    </div>
+
+
+
                                     <!--                Issue Date                    -->
 
                                     <div class="md:col-span-5">
@@ -286,7 +344,8 @@ const sendData = () => {
 
                                     <!--                Due Date                    -->
 
-                                    <div class="md:col-span-5">
+                                    <div
+                                        class="md:col-span-5">
                                         <label
                                             for="due_date"
                                             class="font-semibold"
@@ -359,14 +418,14 @@ const sendData = () => {
 
                                     <div class="md:col-span-5">
                                         <label
-                                            for="billed_to_mail"
+                                            for="billed_to_email"
                                             class="font-semibold"
-                                        >Receiver Mail</label
+                                        >Receiver Email</label
                                         >
                                         <input
                                             type="text"
                                             v-model="formData.billedToEmail"
-                                            id="billed_to_mail"
+                                            id="billed_to_email"
                                             class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full"
                                         />
                                         <p
@@ -479,6 +538,8 @@ const sendData = () => {
                                     </div>
 
 
+
+
                                     <!--                Num of items                    -->
 
                                     <div class="md:col-span-5">
@@ -507,7 +568,7 @@ const sendData = () => {
                                             {{ formData.errors.itemsNum }}
                                         </p>
                                     </div>
-                                    <p class="md:col-span-5 text-sm text-gray-600 mt-2">Use commas (,) as a thousand separator and points (.) to represent fractions</p>
+                                    <p class="md:col-span-5 text-sm text-gray-600 mt-2">commas (,) and points (.) can be used to represent thousands and fractions respectively</p>
 
                                     <div class="md:col-span-5 grid grid-cols-2 gap-4" v-for="(item, index) in formData.items" :key="index">
                                         <div>
@@ -523,6 +584,44 @@ const sendData = () => {
                                             <input type="text" v-model="item.price" :id="'item_price_' + index" class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full" />
                                         </div>
                                     </div>
+
+
+                                    <!--                Paper Size                    -->
+
+                                    <div class="md:col-span-5">
+                                        <label
+                                            for="paperSize"
+                                            class="font-semibold"
+                                        >Paper Size</label
+                                        >
+                                        <span class="text-sm text-red-500">* </span>
+
+                                        <select
+                                            class="select w-full"
+                                            id="paperSize"
+                                            v-model="formData.paperSize"
+                                        >
+                                            <option
+                                                disabled
+                                                selected
+                                                class="text-black"
+                                                value="a4"
+                                            >
+                                                Select Paper Size
+                                            </option>
+                                            <option value="A4">A4 (8.27 inches × 11.69 inches)</option>
+                                            <option value="letter">Letter (8.5 inches × 11 inches)</option>
+                                            <option value="legal">Legal (8.5 inches × 14 inches)</option>
+                                        </select>
+
+                                        <p
+                                            v-if="formData.errors.paperSize"
+                                            class="text-sm text-red-500 font-semibold"
+                                        >
+                                            {{ formData.errors.paperSize }}
+                                        </p>
+                                    </div>
+
 
 
                                     <div class="md:col-span-5 text-right flex space-x-4 justify-end mt-6">

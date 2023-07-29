@@ -44,11 +44,7 @@ require __DIR__.'/auth.php';
 /*
  -Validation (both ends)
  -Notes Section
- -Invoice Status
  -Landing page
- -contact info sec. issuer reciever phone, and issuer email
  - protect download route with session key
  - project cleanup
- - paper size / font family
- - add svg logo support
  * */

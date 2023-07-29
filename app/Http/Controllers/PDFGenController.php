@@ -33,6 +33,9 @@ class PDFGenController extends Controller
             'invoiceTotal' => $request->invoiceTotal,
             'issuerPhone' => $request->issuerPhone,
             'issuerEmail' => $request->issuerEmail,
+            'paperSize'=> $request->paperSize,
+            'Status'=> $request->Status,
+
 
 
 
@@ -65,6 +68,8 @@ class PDFGenController extends Controller
             'invoiceTotal' => session('invoiceTotal'),
             'issuerPhone' => session('issuerPhone'),
             'issuerEmail' => session('issuerEmail'),
+            'Status' => session('Status'),
+
 
 
            ]);
@@ -94,10 +99,14 @@ class PDFGenController extends Controller
             'invoiceTotal' => session('invoiceTotal'),
             'issuerPhone' => session('issuerPhone'),
             'issuerEmail' => session('issuerEmail'),
+            'paperSize' => session('paperSize'),
+            'Status' => session('Status'),
+
+
 
 
         ])->render();
-        $pdf = PDF::loadHTML($html)->setPaper('a4');
+        $pdf = PDF::loadHTML($html)->setPaper(session('paperSize'));
 
         return $pdf->download('invoice_'.$postfix.'.pdf');
     }
