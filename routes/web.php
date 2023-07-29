@@ -23,7 +23,7 @@ Route::get('/',function (){
 });
 
 Route::get('/create',[InvoiceController::class,'create'])->name('create');
-Route::post('/getpdf', [PDFGenController::class,'export'])->name('export')->middleware(CheckValidSession::class);
+Route::post('/getpdf', [PDFGenController::class,'export'])->name('export');
 
 Route::get('/preview', [PDFGenController::class,'preview'])->name('preview')->middleware(CheckValidSession::class);
 

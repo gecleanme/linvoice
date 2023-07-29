@@ -23,15 +23,16 @@ class PDFGenRequest extends FormRequest
     {
 
         return [
+            //TODO: Revise rules
             'companyName' => 'required|string|max:255|min:3',
             'logoURL' => 'required|url',
             'invoiceNum' => 'required|integer',
-            'issueDate' => 'required|string',
-            'dueDate' => 'required|string',
+            'issueDate' => 'required|string|min:6',
+            'dueDate' => 'required|string|min:6',
             'address' => 'required|string|max:500',
             'billedToEst' => 'required|string|max:255',
-            'billedToAddress' => 'required|string|max:500',
-            'billedToEmail' => 'email|max:255',
+            'billedToAddress' => 'nullable|string|max:500',
+            'billedToEmail' => 'nullable|email|max:255',
             'currency' => 'required|string|max:3',
             'paymentMethod' => 'required|string|max:255',
             'itemsNum' => 'required|integer|min:1',
@@ -63,6 +64,15 @@ class PDFGenRequest extends FormRequest
             'billedToEst.required' => 'Field Required',
             'billedToAddress.required' => 'Field Required',
             'billedToEmail.required' => 'Field Required',
+            'billedToEmail.email' => 'Field Required',
+            'companyName.required' => 'Issuer Name Required',
+            'issuerEmail.required' => 'Issuer Email Required',
+            'issuerEmail.email' => 'Issuer Email Required',
+            'address.required' =>'Issuer Address Required',
+            'issueDate.min' =>'Invalid Date',
+            'dueDate.min' =>'Invalid Date',
+
+
             //TODO: Complete the rest
 
 
