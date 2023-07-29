@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PDFGenRequest;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Str;
@@ -13,32 +14,29 @@ class PDFGenController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function export(Request $request)
+    public function export(PDFGenRequest $request)
     {
+        $validated = $request->validated();
 
         session()->put([
-            'companyName' => $request->companyName,
-            'logoURL' => $request->logoURL,
-            'invoiceNum' => $request->invoiceNum,
-            'issueDate' => $request->issueDate,
-            'dueDate' => $request->dueDate,
-            'address' => $request->address,
-            'billedToEst' => $request->billedToEst,
-            'billedToName' => $request->billedToName,
-            'billedToEmail' => $request->billedToEmail,
-            'currency' => $request->currency,
-            'paymentMethod' => $request->paymentMethod,
-            'itemsNum' => $request->itemsNum,
-            'items' => $request->items,
-            'invoiceTotal' => $request->invoiceTotal,
-            'issuerPhone' => $request->issuerPhone,
-            'issuerEmail' => $request->issuerEmail,
-            'paperSize'=> $request->paperSize,
-            'Status'=> $request->Status,
-
-
-
-
+            'companyName' => $validated['companyName'],
+            'logoURL' => $validated['logoURL'],
+            'invoiceNum' => $validated['invoiceNum'],
+            'issueDate' => $validated['issueDate'],
+            'dueDate' => $validated['dueDate'],
+            'address' => $validated['address'],
+            'billedToEst' => $validated['billedToEst'],
+            'billedToAddress' => $validated['billedToAddress'],
+            'billedToEmail' => $validated['billedToEmail'],
+            'currency' => $validated['currency'],
+            'paymentMethod' => $validated['paymentMethod'],
+            'itemsNum' => $validated['itemsNum'],
+            'items' => $validated['items'],
+            'invoiceTotal' => $validated['invoiceTotal'],
+            'issuerPhone' => $validated['issuerPhone'],
+            'issuerEmail' => $validated['issuerEmail'],
+            'paperSize'=> $validated['paperSize'],
+            'Status'=> $validated['Status'],
 
 
         ]);
@@ -59,7 +57,7 @@ class PDFGenController extends Controller
             'dueDate' => session('dueDate'),
             'address' => session('address'),
             'billedToEst' => session('billedToEst'),
-            'billedToName' => session('billedToName'),
+            'billedToAddress' => session('billedToAddress'),
             'billedToEmail' => session('billedToEmail'),
             'currency' => session('currency'),
             'paymentMethod' => session('paymentMethod'),
@@ -90,7 +88,7 @@ class PDFGenController extends Controller
             'dueDate' => session('dueDate'),
             'address' => session('address'),
             'billedToEst' => session('billedToEst'),
-            'billedToName' => session('billedToName'),
+            'billedToAddress' => session('billedToAddress'),
             'billedToEmail' => session('billedToEmail'),
             'currency' => session('currency'),
             'paymentMethod' => session('paymentMethod'),

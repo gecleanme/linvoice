@@ -151,7 +151,7 @@
 
                         <td>
                             {{$billedToEst}}.<br/>
-                            {{$billedToName}}<br/>
+                            {{$billedToAddress}}<br/>
                             {{$billedToEmail}}
                         </td>
                     </tr>

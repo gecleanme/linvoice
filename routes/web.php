@@ -3,6 +3,7 @@
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PDFGenController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\CheckValidSession;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,11 +23,11 @@ Route::get('/',function (){
 });
 
 Route::get('/create',[InvoiceController::class,'create'])->name('create');
-Route::post('/getpdf', [PDFGenController::class,'export'])->name('export');
+Route::post('/getpdf', [PDFGenController::class,'export'])->name('export')->middleware(CheckValidSession::class);
 
-Route::get('/preview', [PDFGenController::class,'preview'])->name('preview');
+Route::get('/preview', [PDFGenController::class,'preview'])->name('preview')->middleware(CheckValidSession::class);
 
-Route::get('/download', [PDFGenController::class,'download'])->name('download');
+Route::get('/download', [PDFGenController::class,'download'])->name('download')->middleware(CheckValidSession::class);
 
 
 Route::get('/dashboard', function () {
@@ -42,9 +43,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 /*
- -Validation (both ends)
  -Notes Section
  -Landing page
- - protect download route with session key
  - project cleanup
  * */

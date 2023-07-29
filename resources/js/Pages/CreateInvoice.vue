@@ -18,13 +18,13 @@ const formData = useForm({
     companyName: null,
     logoURL: "https://karajkom.com/storage/logo/classic-theme_logo.png",
     invoiceNum:null,
-    issueDate:null,
-    dueDate: null,
+    issueDate:new Date(null),
+    dueDate: new Date(null),
     address:null,
     issuerPhone:null,
     issuerEmail:null,
     billedToEst:null,
-    billedToName:null,
+    billedToAddress:null,
     billedToEmail:null,
     Status:"Sent",
     currency: "",
@@ -32,7 +32,7 @@ const formData = useForm({
     items: Array.from({ length: 1 }, () => ({ description: '', price: '' })),
     invoiceTotal:0,
     paymentMethod:"Credit Card",
-    paperSize:'a4',
+    paperSize:'A4',
 
 });
 
@@ -369,7 +369,7 @@ const sendData = () => {
 
                                     <div class="md:col-span-5">
                                         <label
-                                            for="billed_to_est"
+                                            for="receiver_name"
                                             class="font-semibold"
                                         >Receiver Name</label
                                         >
@@ -378,7 +378,7 @@ const sendData = () => {
                                         <input
                                             type="text"
                                             v-model="formData.billedToEst"
-                                            id="billed_to_est"
+                                            id="receiver_name"
                                             class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full"
                                         />
                                         <p
@@ -395,21 +395,21 @@ const sendData = () => {
 
                                     <div class="md:col-span-5">
                                         <label
-                                            for="billed_to_add"
+                                            for="receiver_address"
                                             class="font-semibold"
                                         >Receiver Address</label
                                         >
                                         <input
                                             type="text"
-                                            v-model="formData.billedToName"
-                                            id="billed_to_add"
+                                            v-model="formData.billedToAddress"
+                                            id="receiver_address"
                                             class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full"
                                         />
                                         <p
-                                            v-if="formData.errors.billedToName"
+                                            v-if="formData.errors.billedToAddress"
                                             class="text-sm text-red-500 font-semibold"
                                         >
-                                            {{ formData.errors.billedToName }}
+                                            {{ formData.errors.billedToAddress }}
                                         </p>
                                     </div>
 
@@ -418,14 +418,14 @@ const sendData = () => {
 
                                     <div class="md:col-span-5">
                                         <label
-                                            for="billed_to_email"
+                                            for="receiver_email"
                                             class="font-semibold"
                                         >Receiver Email</label
                                         >
                                         <input
                                             type="text"
                                             v-model="formData.billedToEmail"
-                                            id="billed_to_email"
+                                            id="receiver_email"
                                             class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full"
                                         />
                                         <p
@@ -577,11 +577,19 @@ const sendData = () => {
 
                                             <input type="text" v-model="item.description" :id="'item_description_' + index" class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full" />
 
+                                            <p v-if="formData.errors['items.' + index + '.description']" class="text-sm text-red-500 font-semibold">
+                                                {{formData.errors['items.' + index + '.description']}}
+                                            </p>
+
                                         </div>
                                         <div>
                                             <label :for="'item_price_' + index" class="font-semibold">Item ({{index+1}}) Price</label>
                                             <span class="text-sm text-red-500">* </span>
                                             <input type="text" v-model="item.price" :id="'item_price_' + index" class="h-10 outline-white border border-gray-300 mt-1 rounded px-4 w-full" />
+                                            <p v-if="formData.errors['items.' + index + '.price']" class="text-sm text-red-500 font-semibold">
+                                                {{formData.errors['items.' + index + '.price']}}
+                                            </p>
+
                                         </div>
                                     </div>
 

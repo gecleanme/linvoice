@@ -10,7 +10,7 @@ const props = defineProps({
     companyName: String,
     address: String,
     billedToEst: String,
-    billedToName: String,
+    billedToAddress: String,
     issuerPhone:String,
     issuerEmail:String,
     billedToEmail: String,
@@ -79,7 +79,7 @@ const showSuccess = ref(false);
 
                             <td>
                                 {{ billedToEst }}.<br/>
-                                {{ billedToName }}<br/>
+                                {{ billedToAddress }}<br/>
                                 {{ billedToEmail }}
                             </td>
                         </tr>
