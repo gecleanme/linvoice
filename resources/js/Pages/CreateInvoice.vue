@@ -16,7 +16,7 @@ const format = (date) => {
 
 const formData = useForm({
     companyName: null,
-    logoURL: "https://karajkom.com/storage/logo/classic-theme_logo.png",
+    logoURL: null,
     invoiceNum:null,
     issueDate:null,
     dueDate: null,
@@ -226,6 +226,7 @@ const sendData = () => {
                                             class="font-semibold"
                                         > Issuer Contact Phone</label
                                         >
+                                        <span class="text-sm text-red-500">* </span>
 
                                         <input
                                             type="text"
