@@ -48,7 +48,12 @@ let formatter = new Intl.NumberFormat('en-US', {
 
 
 watch(() => formData.itemsNum, (newVal, oldVal) => {
-    newVal = Math.max(1, newVal); // not less than 1
+
+    //protect against nullification & less than 1
+
+    if (newVal === null || newVal<1) {
+        formData.itemsNum = 1;
+    }
 
     if (newVal > oldVal) {
         // If num increased, add new items
@@ -58,6 +63,10 @@ watch(() => formData.itemsNum, (newVal, oldVal) => {
         formData.items.splice(newVal);
     }
 });
+
+// watch(() => formData.itemsNum, (newVal, oldVal) =>{
+//
+// })
 
 
 const total = computed(() => formData.items.reduce((sum, item) => {
