@@ -39,8 +39,8 @@ class PDFGenRequest extends FormRequest
             'invoiceTotal' => 'required|string|min:1',
             'issuerPhone' => 'required|string',
             'issuerEmail' => 'required|email|max:255',
-            'paperSize'=> 'required|string|in:A4,letter,legal',
-            'Status'=> 'required|string|in:Paid,Sent,Overdue',
+            'paperSize' => 'required|string|in:A4,letter,legal',
+            'Status' => 'required|string|in:Paid,Sent,Overdue',
             'items' => 'required|array',
             'items.*.description' => 'required|string|min:3|max:255',
             'items.*.price' => 'required|numeric|min:0',
@@ -48,7 +48,6 @@ class PDFGenRequest extends FormRequest
         ];
 
     }
-
 
     /**
      * Get the error messages for the defined validation rules.
@@ -68,16 +67,12 @@ class PDFGenRequest extends FormRequest
             'companyName.required' => 'Issuer Name Required',
             'issuerEmail.required' => 'Issuer Email Required',
             'issuerEmail.email' => 'Issuer Email Required',
-            'address.required' =>'Issuer Address Required',
-            'issueDate.min' =>'Invalid Date',
-            'dueDate.min' =>'Invalid Date',
-
+            'address.required' => 'Issuer Address Required',
+            'issueDate.min' => 'Invalid Date',
+            'dueDate.min' => 'Invalid Date',
 
             //TODO: Complete the rest
 
-
-
         ];
     }
-
 }

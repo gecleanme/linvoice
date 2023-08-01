@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PDFGenRequest;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
 use Inertia\Inertia;
 
 class PDFGenController extends Controller
@@ -35,21 +34,21 @@ class PDFGenController extends Controller
             'invoiceTotal' => $validated['invoiceTotal'],
             'issuerPhone' => $validated['issuerPhone'],
             'issuerEmail' => $validated['issuerEmail'],
-            'paperSize'=> $validated['paperSize'],
-            'Status'=> $validated['Status'],
-
+            'paperSize' => $validated['paperSize'],
+            'Status' => $validated['Status'],
 
         ]);
 
         return redirect(route('preview'));
 
     }
+
     /**
      * Show the form for creating a new resource.
      */
     public function preview()
     {
-           return Inertia::render('Pdf',[
+        return Inertia::render('Pdf', [
             'companyName' => session('companyName'),
             'logoURL' => session('logoURL'),
             'invoiceNum' => session('invoiceNum'),
@@ -68,9 +67,7 @@ class PDFGenController extends Controller
             'issuerEmail' => session('issuerEmail'),
             'Status' => session('Status'),
 
-
-
-           ]);
+        ]);
 
     }
 
@@ -80,7 +77,7 @@ class PDFGenController extends Controller
     public function download()
     {
         $postfix = Str::random(7);
-        $html =view('pdf',[
+        $html = view('pdf', [
             'companyName' => session('companyName'),
             'logoURL' => session('logoURL'),
             'invoiceNum' => session('invoiceNum'),
@@ -99,9 +96,6 @@ class PDFGenController extends Controller
             'issuerEmail' => session('issuerEmail'),
             'paperSize' => session('paperSize'),
             'Status' => session('Status'),
-
-
-
 
         ])->render();
         $pdf = PDF::loadHTML($html)->setPaper(session('paperSize'));

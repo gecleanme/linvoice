@@ -16,7 +16,7 @@ class CheckValidSession
     public function handle(Request $request, Closure $next): Response
     {
         //check if a PDF has been submitted
-        if (!session('items')) {
+        if (! session('items')) {
             abort(403);
         }
 

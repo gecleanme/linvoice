@@ -18,17 +18,16 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function (){
+Route::get('/', function () {
     return redirect('/create');
 });
 
-Route::get('/create',[InvoiceController::class,'create'])->name('create');
-Route::post('/getpdf', [PDFGenController::class,'export'])->name('export');
+Route::get('/create', [InvoiceController::class, 'create'])->name('create');
+Route::post('/getpdf', [PDFGenController::class, 'export'])->name('export');
 
-Route::get('/preview', [PDFGenController::class,'preview'])->name('preview')->middleware(CheckValidSession::class);
+Route::get('/preview', [PDFGenController::class, 'preview'])->name('preview')->middleware(CheckValidSession::class);
 
-Route::get('/download', [PDFGenController::class,'download'])->name('download')->middleware(CheckValidSession::class);
-
+Route::get('/download', [PDFGenController::class, 'download'])->name('download')->middleware(CheckValidSession::class);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

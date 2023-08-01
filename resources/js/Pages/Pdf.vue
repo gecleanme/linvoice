@@ -1,6 +1,6 @@
 <script setup>
-import {ref} from "vue";
-import {Link} from "@inertiajs/vue3";
+import { ref } from "vue";
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
     logoURL: String,
@@ -11,157 +11,199 @@ const props = defineProps({
     address: String,
     billedToEst: String,
     billedToAddress: String,
-    issuerPhone:String,
-    issuerEmail:String,
+    issuerPhone: String,
+    issuerEmail: String,
     billedToEmail: String,
     paymentMethod: String,
-    Status:String,
+    Status: String,
     items: Array,
     currency: String,
-    invoiceTotal: Number
-
-
+    invoiceTotal: Number,
 });
 
 const showSuccess = ref(false);
 </script>
 
 <template>
-    <div class="preview"
-    v-show="!showSuccess"
-    >
-    <div class="alert alert-info bg-blue-400 mx-auto p-3 m-4 border-none w-1/2 space-x-2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <span>PDF file page will be of the desired size selected in the creation form</span>
-        <a
-            href="/download"
-
+    <div class="preview" v-show="!showSuccess">
+        <div
+            class="alert alert-info bg-blue-400 mx-auto p-3 m-4 border-none w-1/2 space-x-2"
         >
-            <button class="btn btn-outline text-black hover:text-white"
-            @click="showSuccess = true"
-            >Download</button>
-
-        </a>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="stroke-current shrink-0 w-6 h-6"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+            </svg>
+            <span
+                >PDF file page will be of the desired size selected in the
+                creation form</span
+            >
+            <a href="/download">
+                <button
+                    class="btn btn-outline text-black hover:text-white"
+                    @click="showSuccess = true"
+                >
+                    Download
+                </button>
+            </a>
         </div>
 
-
-        <div class="mt-4 flex lg:hidden alert alert-warning bg-orange-400 mx-auto p-3 m-4 border-none w-1/2 space-x-2">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <div
+            class="mt-4 flex lg:hidden alert alert-warning bg-orange-400 mx-auto p-3 m-4 border-none w-1/2 space-x-2"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="stroke-current shrink-0 w-6 h-6"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+            </svg>
             <span>Switch to Desktop site for an accurate preview</span>
         </div>
 
-    <div class="invoice-box">
-        <table>
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                <img :src="logoURL" alt="" style="width: 100%; max-width: 300px"/>
-                            </td>
+        <div class="invoice-box">
+            <table>
+                <tr class="top">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td class="title">
+                                    <img
+                                        :src="logoURL"
+                                        alt=""
+                                        style="width: 100%; max-width: 300px"
+                                    />
+                                </td>
 
-                            <td>
-                                Invoice #: {{ invoiceNum }}<br/>
-                                Created: {{ issueDate }}<br/>
-                                Due: {{ dueDate }} <br/>
-                                Status: {{ Status }}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                                <td>
+                                    Invoice #: {{ invoiceNum }}<br />
+                                    Created: {{ issueDate }}<br />
+                                    Due: {{ dueDate }} <br />
+                                    Status: {{ Status }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-            <tr class="information">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>
-                                {{ companyName }}<br/>
-                                {{ address }} <br/> <br/>
-                                Contact <br> {{issuerEmail}} <br/>
-                                             {{issuerPhone}}
-                            </td>
+                <tr class="information">
+                    <td colspan="2">
+                        <table>
+                            <tr>
+                                <td>
+                                    {{ companyName }}<br />
+                                    {{ address }} <br />
+                                    <br />
+                                    Contact <br />
+                                    {{ issuerEmail }} <br />
+                                    {{ issuerPhone }}
+                                </td>
 
-                            <td>
-                                {{ billedToEst }}.<br/>
-                                {{ billedToAddress }}<br/>
-                                {{ billedToEmail }}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                                <td>
+                                    {{ billedToEst }}.<br />
+                                    {{ billedToAddress }}<br />
+                                    {{ billedToEmail }}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
 
-            <tr class="heading">
-                <td>Payment Method</td>
-                <td></td>
+                <tr class="heading">
+                    <td>Payment Method</td>
+                    <td></td>
+                </tr>
 
-            </tr>
+                <tr class="details">
+                    <td>{{ paymentMethod }}</td>
+                    <td></td>
+                </tr>
 
-            <tr class="details">
-                <td>{{ paymentMethod }}</td>
-                <td></td>
+                <tr class="heading">
+                    <td>Item</td>
 
-            </tr>
+                    <td>Price</td>
+                </tr>
 
-            <tr class="heading">
-                <td>Item</td>
+                <tr class="item" v-for="item in items">
+                    <td>{{ item["description"] }}</td>
 
-                <td>Price</td>
-            </tr>
+                    <td>{{ currency }} {{ item["price"] }}</td>
+                </tr>
 
-            <tr class="item"
-                v-for="item in items"
-            >
-                <td>{{ item['description'] }}</td>
+                <tr class="total">
+                    <td></td>
 
-                <td>{{ currency }} {{ item['price'] }}</td>
-            </tr>
-
-
-            <tr class="total">
-                <td></td>
-
-                <td>Total: {{ currency }} {{ invoiceTotal }}</td>
-            </tr>
-        </table>
+                    <td>Total: {{ currency }} {{ invoiceTotal }}</td>
+                </tr>
+            </table>
+        </div>
     </div>
-    </div>
 
-    <div class="download-success"
-    v-show="showSuccess"
-    >
+    <div class="download-success" v-show="showSuccess">
         <div class="flex items-center justify-center h-screen">
             <div>
                 <div class="flex flex-col items-center space-y-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-green-600 w-28 h-28" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="text-green-600 w-28 h-28"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="1"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
                     </svg>
                     <h1 class="text-4xl font-bold">Smells like fresh ink!</h1>
                     <p>Your PDF invoice has started downloading...</p>
                     <Link
                         :href="route('create')"
-
-                        class="inline-flex items-center px-4 py-2 text-white bg-black rounded rounded-md focus:outline-none focus:ring">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-2 text-white fill-current" viewBox="0 0 24 24"
-                             stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                        class="inline-flex items-center px-4 py-2 text-white bg-black rounded rounded-md focus:outline-none focus:ring"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-3 h-3 mr-2 text-white fill-current"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                            />
                         </svg>
                         <span class="text-sm font-medium text-white">
-                Create another
-            </span>
+                            Create another
+                        </span>
                     </Link>
                 </div>
             </div>
         </div>
-
     </div>
-
 </template>
 
 <style scoped>
 body {
-    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     text-align: center;
     color: #777;
 }
@@ -193,7 +235,7 @@ body a {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     font-size: 16px;
     line-height: 24px;
-    font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     color: #555;
 }
 
