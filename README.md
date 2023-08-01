@@ -1,6 +1,6 @@
 # Linvoice
 
-## is a minimalistic Invoice creation app
+## is a minimalistic Invoice PDF creation app
 
 ### Disclaimer: This cute toy was built to scratch an itch I'm having at work, it's not intended for public consumption in its current form
 
