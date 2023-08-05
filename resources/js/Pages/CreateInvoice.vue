@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { computed, watch } from "vue";
+import { computed, onMounted, watch } from "vue";
 
 const format = (date) => {
     if (!(date instanceof Date)) {
@@ -27,8 +27,8 @@ const formData = useForm({
     billedToEmail: null,
     Status: "Sent",
     currency: "",
-    itemsNum: 1,
-    items: Array.from({ length: 1 }, () => ({ description: "", price: "" })),
+    itemsNum: 0,
+    items: [],
     invoiceTotal: 0,
     paymentMethod: "Credit Card",
     paperSize: "A4",
@@ -59,6 +59,12 @@ watch(
                     price: "",
                 })),
             );
+
+            if (formData.items[formData.items.length - 1].price) {
+                Number(formData.items[formData.items.length - 1].price).toFixed(
+                    2,
+                );
+            }
         } else {
             // If num decreased, remove items
             formData.items.splice(newVal);
@@ -72,11 +78,15 @@ const total = computed(() =>
             const price = Number(item.price.replace(/,/g, "")); // Remove commas to keep total a true number
             return sum + price;
         }, 0)
-        .toFixed(3),
+        .toFixed(2),
 );
 
 watch(total, (newTotal) => {
     formData.invoiceTotal = formatter.format(newTotal);
+});
+
+onMounted(() => {
+    formData.itemsNum++;
 });
 
 const sendData = () => {
