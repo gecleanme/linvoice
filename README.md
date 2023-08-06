@@ -6,17 +6,17 @@
 
 ## Tech & Tools:
 
-- Laravel (v10 base)
-- Breeze / Inertia.js Scaffolding
-- Vue 3: Composition API with `script setup`
-- Tailwind CSS
-- [DaisyUI](https://daisyui.com/)
-- [DomPDF's Laravel Wrapper](https://github.com/barryvdh/laravel-dompdf)
+-   Laravel (v10 base)
+-   Breeze / Inertia.js Scaffolding
+-   Vue 3: Composition API with `script setup`
+-   Tailwind CSS
+-   [DaisyUI](https://daisyui.com/)
+-   [DomPDF's Laravel Wrapper](https://github.com/barryvdh/laravel-dompdf)
 
 ## Features:
 
-- Easy to use
-- Elegant Responsive UI
+-   Easy to use
+-   Elegant Responsive UI
 
 ## Code Style/Format Treatment
 
@@ -28,10 +28,10 @@
 
 ## Prerequisites
 
-- php ^8.1
-- composer
-- npm
-- php-gd
+-   php ^8.1
+-   composer
+-   npm
+-   php-gd
 
 ## Local Dev Env Setup
 
