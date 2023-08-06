@@ -1,6 +1,7 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import { computed, onMounted, watch } from "vue";
+import {Head} from "@inertiajs/vue3";
 
 const format = (date) => {
     if (!(date instanceof Date)) {
