@@ -43,7 +43,7 @@ class PDFGenRequest extends FormRequest
             'Status' => 'required|string|in:Paid,Sent,Overdue',
             'items' => 'required|array',
             'items.*.description' => 'required|string|min:3|max:255',
-            'items.*.price' => 'required|numeric|min:0',
+            'items.*.price' => 'required|string',
 
         ];
 

@@ -368,7 +368,7 @@ const sendData = () => {
                                             v-model="formData.issueDate"
                                             month-name-format="long"
                                             :enable-time-picker="false"
-                                            placeholder="Select Date"
+                                            placeholder="Click to Select Date"
                                             :format="format"
                                             model-type="dd/MM/yyyy"
                                         />
@@ -396,7 +396,7 @@ const sendData = () => {
                                             v-model="formData.dueDate"
                                             month-name-format="long"
                                             :enable-time-picker="false"
-                                            placeholder="Select Date"
+                                            placeholder="Click to Select Date"
                                             :format="format"
                                             model-type="dd/MM/yyyy"
                                         />
