@@ -1,7 +1,6 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { useForm, Head } from "@inertiajs/vue3";
 import { computed, onMounted, watch } from "vue";
-import {Head} from "@inertiajs/vue3";
 
 const format = (date) => {
     if (!(date instanceof Date)) {
@@ -96,7 +95,7 @@ const sendData = () => {
 </script>
 
 <template>
-    <Head title="Contract Create" />
+    <Head title="Invoice Create" />
     <form @submit.prevent="sendData">
         <!-- Template Start   -->
         <!-- component -->
