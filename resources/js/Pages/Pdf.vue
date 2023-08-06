@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
+import {Head} from "@inertiajs/vue3";
 
 const props = defineProps({
     logoURL: String,
@@ -25,6 +26,7 @@ const showSuccess = ref(false);
 </script>
 
 <template>
+    <Head :title="`Preview Invoice No: ${invoiceNum}`" />
     <div class="preview" v-show="!showSuccess">
         <div
             class="alert alert-info bg-blue-400 mx-auto p-3 m-4 border-none w-1/2 space-x-2"

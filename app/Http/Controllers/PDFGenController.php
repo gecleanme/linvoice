@@ -4,14 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PDFGenRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Inertia\Inertia;
 
 class PDFGenController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Prepare the data for the PDF
      */
     public function export(PDFGenRequest $request)
     {
@@ -39,16 +36,15 @@ class PDFGenController extends Controller
 
         ]);
 
-        return redirect(route('preview'));
-
+        return to_route('preview');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Preview the PDF
      */
     public function preview()
     {
-        return Inertia::render('Pdf', [
+        return inertia('Pdf', [
             'companyName' => session('companyName'),
             'logoURL' => session('logoURL'),
             'invoiceNum' => session('invoiceNum'),
@@ -68,15 +64,15 @@ class PDFGenController extends Controller
             'Status' => session('Status'),
 
         ]);
-
     }
 
     /**
-     * Store a newly created resource in storage.
+     *  Render the PDF and download it
      */
     public function download()
     {
-        $postfix = Str::random(7);
+        $postfix = 'inc-'.session('invoiceNum').'-'.now()->format('YmdHis');
+
         $html = view('pdf', [
             'companyName' => session('companyName'),
             'logoURL' => session('logoURL'),
@@ -99,39 +95,6 @@ class PDFGenController extends Controller
 
         ])->render();
         $pdf = PDF::loadHTML($html)->setPaper(session('paperSize'));
-
-        return $pdf->download('invoice_'.$postfix.'.pdf');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return $pdf->stream('invoice-'.$postfix.'.pdf');
     }
 }
