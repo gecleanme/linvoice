@@ -1,22 +1,22 @@
 # Linvoice
 
-## is a minimalistic Invoice PDF creation app
+## Minimalistic Invoice PDF creation app
 
 ### Disclaimer: This cute toy was built to scratch an itch I'm having at work, it's not intended for public consumption in its current form
 
 ## Tech & Tools:
 
--   Laravel (v10 base)
--   Breeze / Inertia.js Scaffolding
--   Vue 3: Composition API with `script setup`
--   Tailwind CSS
--   [DaisyUI](https://daisyui.com/)
--   [DomPDF's Laravel Wrapper](https://github.com/barryvdh/laravel-dompdf)
+- Laravel (v10 base)
+- Breeze / Inertia.js Scaffolding
+- Vue 3: Composition API with `script setup`
+- Tailwind CSS
+- [DaisyUI](https://daisyui.com/)
+- [DomPDF's Laravel Wrapper](https://github.com/barryvdh/laravel-dompdf)
 
 ## Features:
 
--   Easy to use
--   Elegant Responsive UI
+- Easy to use
+- Elegant Responsive UI
 
 ## Code Style/Format Treatment
 
@@ -26,7 +26,20 @@
 
 [Demo](https://linvoice-production.up.railway.app/create)
 
+## Prerequisites
+
+- php ^8.1
+- composer
+- npm
+- php-gd
+
 ## Local Dev Env Setup
+
+## Clone the repo
+
+```bash
+git clone https://github.com/gecleanme/linvoice.git
+```
 
 ### Install Dependencies
 
@@ -39,6 +52,12 @@ npm install
 
 ```
 cp .env.example .env
+```
+
+### Generate App Key
+
+```bash
+php artisan key:generate
 ```
 
 ### Migrations
